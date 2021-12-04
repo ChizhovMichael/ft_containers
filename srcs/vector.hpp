@@ -126,22 +126,22 @@ namespace ft
 	{
 	private:
 		typedef vector_base<T, Allocator>                   		base;
-		typedef typename base::alloc_type                		alloc_type;
+		typedef typename base::alloc_type                			alloc_type;
 
 	public:
 		// types
-		typedef T							value_type;
-		typedef Allocator						allocator_type;
-		typedef typename allocator_type::pointer			pointer;
-		typedef typename allocator_type::const_pointer			const_pointer;
-		typedef typename allocator_type::reference			reference;
+		typedef T													value_type;
+		typedef Allocator											allocator_type;
+		typedef typename allocator_type::pointer					pointer;
+		typedef typename allocator_type::const_pointer				const_pointer;
+		typedef typename allocator_type::reference					reference;
 	      	typedef typename allocator_type::const_reference		const_reference;
-		typedef size_t							size_type;
-		typedef ptrdiff_t						difference_type;
-		typedef ft::__normal_iterator<pointer, vector>			iterator;
+		typedef size_t												size_type;
+		typedef ptrdiff_t											difference_type;
+		typedef ft::__normal_iterator<pointer, vector>				iterator;
 		typedef ft::__normal_iterator<const_pointer, vector>		const_iterator;
-		typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
-	 	typedef ft::reverse_iterator<iterator>				reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
+	 	typedef ft::reverse_iterator<iterator>						reverse_iterator;
 
 	protected:
       	using base::_allocate;
@@ -349,15 +349,15 @@ namespace ft
     	const_reference at(size_type n) const
     	{
     		if (n >= this->size())
-			throw std::out_of_range("vector::at: n >= size()");
-		return (*this)[n];
+				throw std::out_of_range("vector::at: n >= size()");
+			return (*this)[n];
     	}
 
     	reference at(size_type n)
     	{
     		if (n >= this->size())
-			throw std::out_of_range("vector::at: n >= size()");
-		return (*this)[n];
+				throw std::out_of_range("vector::at: n >= size()");
+			return (*this)[n];
     	}
 
     	reference front()
