@@ -766,6 +766,80 @@ static void testSwapFunc()
   	}
 }
 
+static void testClear()
+{
+    int                 arr1[5] = {1, 2, 3, 4, 5};
+    ft::map<int, int>   m1;
+
+    for (int i = 0; i < 5; ++i)
+        m1.insert(ft::pair<int, int>(i, arr1[i]));
+    m1.clear();
+    assert(m1.size() == 0);
+}
+
+static void testOperatorEqual()
+{
+    int                 arr1[5] = {1, 2, 3, 4, 5};
+    ft::map<int, int>   m1;
+    ft::map<int, int>   m2;
+
+    for (int i = 0; i < 5; ++i)
+        m1.insert(ft::pair<int, int>(i, arr1[i]));
+    for (int i = 1; i < 4; ++i)
+        m2.insert(ft::pair<int, int>(i, arr1[i]));
+
+    ft::map<int, int>   m3(m1);
+
+    assert(m1 != m2);
+    assert(m1 == m3);
+    assert(m2 != m1);
+    assert(m2 != m3);
+    assert(m3 == m1);
+    assert(m3 != m2);
+
+    m3[0] = 100;
+    assert(m1 != m3);
+    assert(m3 != m1);
+}
+
+static void testOperatorCompar()
+{
+    std::string s1 = "bonjour";
+    std::string s2 = "bonjoura";
+    std::string s3 = "bonjou";
+    ft::map<int, char>  m1;
+    ft::map<int, char>  m2;
+    ft::map<int, char>  m3;
+
+    for (int i = 0; s1[i]; ++i)
+        m1.insert(ft::pair<int, char>(i, s1[i]));
+    for (int i = 0; s2[i]; ++i)
+        m2.insert(ft::pair<int, char>(i, s2[i]));
+    for (int i = 0; s3[i]; ++i)
+        m3.insert(ft::pair<int, char>(i, s3[i]));
+
+    assert(m1 < m2);
+    assert(m1 > m3);
+    assert(m1 <= m2);
+    assert(m1 >= m3);
+    assert(m1 <= m1);
+    assert(m1 >= m1);
+
+    assert(m2 > m1);
+    assert(m2 > m3);
+    assert(m2 >= m1);
+    assert(m2 >= m3);
+    assert(m2 <= m2);
+    assert(m2 >= m2);
+
+    assert(m3 < m1);
+    assert(m3 < m2);
+    assert(m3 <= m1);
+    assert(m3 <= m2);
+    assert(m3 <= m3);
+    assert(m3 >= m3);
+}
+
 void test_map()
 {
 	testConstructorDefault();
@@ -793,4 +867,8 @@ void test_map()
     testLowerAndUpperBound();
     testEqualRange();
     testSwapFunc();
+
+    testClear();
+    testOperatorEqual();
+    testOperatorCompar();
 }
