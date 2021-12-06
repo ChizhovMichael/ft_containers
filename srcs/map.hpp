@@ -8,8 +8,6 @@
 # include "traits.hpp"
 # include "tree.hpp"
 
-# include <map>
-
 namespace ft
 {
 	template <typename _Key, typename _Tp, typename _Compare = ft::less<_Key>,
@@ -277,18 +275,6 @@ namespace ft
 
 		template<typename _K, typename _T, typename _C, typename _A>
 		friend bool operator<(const map<_K, _T, _C, _A>& x, const map<_K, _T, _C, _A>& y);
-
-		template<typename _K, typename _T, typename _C, typename _A>
-		friend bool operator!=(const map<_K, _T, _C, _A>& x, const map<_K, _T, _C, _A>& y);
-
-		template<typename _K, typename _T, typename _C, typename _A>
-		friend bool operator>(const map<_K, _T, _C, _A>& x, const map<_K, _T, _C, _A>& y);
-
-		template<typename _K, typename _T, typename _C, typename _A>
-		friend bool operator<=(const map<_K, _T, _C, _A>& x, const map<_K, _T, _C, _A>& y);
-
-		template<typename _K, typename _T, typename _C, typename _A>
-		friend bool operator>=(const map<_K, _T, _C, _A>& x, const map<_K, _T, _C, _A>& y);
 	};
 
 	template<typename _Key, typename _Tp, typename _Compare, typename _Alloc>
