@@ -221,26 +221,8 @@ namespace ft
 	    template<class InputIt>
 	    void assign(InputIt first, InputIt last)
 	    {
-	    	const size_type len = ft::distance(first, last);
-
-	    	if (len > capacity())
-	    	{
-    			pointer tmp(allocate_and_copy(len, first, last));
-            	_destroy(_impl._start, _impl._finish, _alloc);
-            	_deallocate(_impl._start, _impl._end_of_storage - _impl._start);
-            	_impl._start = tmp;
-            	_impl._finish = _impl._start + len;
-    			_impl._end_of_storage = _impl._finish;
-			}
-			else if (size() >= len)
-            	erase_at_end(ft::copy(first, last, _impl._start));
-    		else
-    		{
-    			InputIt mid = first;
-            	ft::advance(mid, size());
-    			ft::copy(first, mid, _impl._start);
-            	_impl._finish = copy_initialize(mid, last, _impl._finish);
-      		}
+	    	typedef typename ft::__is_integer<InputIt>::__type _Integral;
+          	assign_dispatch(first, last, _Integral());
     	}
 
     	void assign(size_type n, const value_type& u)
@@ -810,6 +792,39 @@ namespace ft
     	{
     		return empty() ? (const value_type*)0 : ptr.operator->();
     	}
+
+    	// _M_assign_dispatch
+    	template<typename _Integer>
+        void assign_dispatch(_Integer n, _Integer val, __true_type)
+        {
+        	fill_assign(n, val);
+        }
+
+        template<typename _InputIterator>
+        void assign_dispatch(_InputIterator first, _InputIterator last,
+                           __false_type)
+        {
+        	const size_type len = ft::distance(first, last);
+
+	    	if (len > capacity())
+	    	{
+    			pointer tmp(allocate_and_copy(len, first, last));
+            	_destroy(_impl._start, _impl._finish, _alloc);
+            	_deallocate(_impl._start, _impl._end_of_storage - _impl._start);
+            	_impl._start = tmp;
+            	_impl._finish = _impl._start + len;
+    			_impl._end_of_storage = _impl._finish;
+			}
+			else if (size() >= len)
+            	erase_at_end(ft::copy(first, last, _impl._start));
+    		else
+    		{
+    			_InputIterator mid = first;
+            	ft::advance(mid, size());
+    			ft::copy(first, mid, _impl._start);
+            	_impl._finish = copy_initialize(mid, last, _impl._finish);
+      		}
+      	}
 	};
 
 	template<typename _Tp, typename _Alloc>
