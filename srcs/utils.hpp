@@ -243,6 +243,23 @@ namespace ft
 			return x;
 		}
 	};
+
+	template<typename _T1, typename _T2>
+    pair<_T1, _T2> make_pair(_T1 x, _T2 y)
+    {
+    	return pair<_T1, _T2>(x, y);
+    }
+
+    template<bool, typename _Tp = void>
+    struct enable_if
+    {};
+	
+	// Partial specialization for true.
+	template<typename _Tp>
+	struct enable_if<true, _Tp>
+	{
+		typedef _Tp type;
+	};
 }
 
 #endif
