@@ -22,4 +22,23 @@ void test_stack();
 
 void test_compare(bool v);
 
+struct more
+{
+	bool operator() (const int& lhs, const int& rhs) const
+	{
+		return lhs > rhs;
+	}
+};
+
+struct less
+{
+	bool operator() (const int& lhs, const int& rhs) const
+	{
+		return lhs < rhs;
+	}
+};
+
+bool fnmore(int lhs, int rhs);
+bool fnless(int lhs, int rhs);
+
 #endif

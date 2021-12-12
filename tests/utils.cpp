@@ -19,3 +19,13 @@ void test_compare(bool v)
 	else
 		std::cout << "\033[0;31m[💥]\033[0m";
 }
+
+bool fnmore(int lhs, int rhs)
+{
+	return lhs > rhs;
+}
+
+bool fnless(int lhs, int rhs)
+{
+	return lhs < rhs;
+}
