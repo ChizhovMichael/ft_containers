@@ -218,32 +218,6 @@ static void testConstructorCopy()
         m4_copied.size() == m4s_copied.size());
 }
 
-struct more
-{
-	bool operator() (const int& lhs, const int& rhs) const
-	{
-		return lhs > rhs;
-	}
-};
-
-struct less
-{
-	bool operator() (const int& lhs, const int& rhs) const
-	{
-		return lhs < rhs;
-	}
-};
-
-bool fnmore(int lhs, int rhs)
-{
-	return lhs > rhs;
-}
-
-bool fnless(int lhs, int rhs)
-{
-	return lhs < rhs;
-}
-
 static void testConstructorCompare()
 {
 	ft::map<int, int, more> m1;
