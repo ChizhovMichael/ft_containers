@@ -1,8 +1,13 @@
-NAME	= 	main
+NAME	= 	a.out
 
 HEADER	= 	./srcs
 
-SRCS	=	./main.cpp
+SRCS	=	./main.cpp \
+			./tests/utils.cpp \
+			./tests/vector.cpp \
+			./tests/stack.cpp \
+			./tests/map.cpp \
+			./tests/set.cpp
 		
 OBJS	= 	$(SRCS:.cpp=.o)
 
